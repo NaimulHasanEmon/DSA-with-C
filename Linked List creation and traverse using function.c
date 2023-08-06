@@ -5,7 +5,18 @@ struct Node
     int data;
     struct Node *next;
 };
-
+void LinkedListTraversal(struct Node *ptr)
+{
+    while (ptr != NULL)
+    {
+        printf("%d", ptr->data);
+        ptr = ptr->next;
+        if (ptr != NULL)
+        {
+            printf(" -> ");
+        }
+    }
+}
 int main()
 {
     struct Node *head, *second, *third, *fourth;
@@ -13,25 +24,14 @@ int main()
     second = (struct Node *)malloc(sizeof(struct Node));
     third = (struct Node *)malloc(sizeof(struct Node));
     fourth = (struct Node *)malloc(sizeof(struct Node));
-    head->data = 1;
+    head->data = 7;
     head->next = second;
-    second->data = 2;
+    second->data = 45;
     second->next = third;
-    third->data = 3;
+    third->data = 69;
     third->next = fourth;
-    fourth->data = 4;
+    fourth->data = 100;
     fourth->next = NULL;
-    struct Node *currNode = head;
-    while (currNode != NULL)
-    {
-        printf("%d -> ", currNode->data);
-        currNode = currNode->next;
-        if (currNode == NULL)
-            printf("NULL");
-    }
-    free(head);
-    free(second);
-    free(third);
-    free(fourth);
+    LinkedListTraversal(head);
     return 0;
 }

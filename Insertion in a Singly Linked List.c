@@ -14,6 +14,25 @@ node *addFirst(node *head, int data)
     return newNode;
 }
 
+node *addLast(node *head, int data)
+{
+    node *newNode = (node *)malloc(sizeof(node));
+    newNode->data = data;
+    newNode->next = NULL;
+    if (head == NULL)
+    {
+        head = newNode;
+        return head;
+    }
+    node *currNode = head;
+    while (currNode->next != NULL)
+    {
+        currNode = currNode->next;
+    }
+    currNode->next = newNode;
+    return head;
+}
+
 void printList(node *head)
 {
     node *currNode = head;
@@ -39,8 +58,8 @@ int main()
     third->data = 3;
     third->next = NULL;
     printList(head);
-    printf("How many nodes you want to add: ");
-    int n, x;
+    printf("How many nodes you want to add first: ");
+    int n, x, y;
     scanf("%d", &n);
     node *temp = head;
     for (int i = 0; i < n; i++)
@@ -48,6 +67,15 @@ int main()
         printf("Data %d: ", i + 1);
         scanf("%d", &x);
         temp = addFirst(temp, x);
+    }
+    printList(temp);
+    printf("How many nodes you want to add last: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("Data %d: ", i + 1);
+        scanf("%d", &y);
+        temp = addLast(temp, y);
     }
     printList(temp);
     free(head);

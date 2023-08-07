@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 typedef struct Node
 {
     int data;
@@ -33,6 +34,22 @@ node *addLast(node *head, int data)
     return head;
 }
 
+node *addAtIndex(node *head, int data, int index)
+{
+    node *newNode = (node *)malloc(sizeof(node));
+    newNode->data = data;
+    node *currNode = head;
+    int i = 0;
+    while (i != index - 1)
+    {
+        currNode = currNode->next;
+        i++;
+    }
+    newNode->next = currNode->next;
+    currNode->next = newNode;
+    return head;
+}
+
 void printList(node *head)
 {
     node *currNode = head;
@@ -40,9 +57,9 @@ void printList(node *head)
     {
         printf("%d -> ", currNode->data);
         currNode = currNode->next;
-        if (currNode == NULL)
-            printf("NULL\n");
     }
+    if (currNode == NULL)
+        printf("NULL\n");
 }
 
 int main()
@@ -58,25 +75,33 @@ int main()
     third->data = 3;
     third->next = NULL;
     printList(head);
-    printf("How many nodes you want to add first: ");
-    int n, x, y;
-    scanf("%d", &n);
     node *temp = head;
+    printf("How many elements you want to add at first: ");
+    int n, x;
+    scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        printf("Data %d: ", i + 1);
+        printf("Data of %d: ", i + 1);
         scanf("%d", &x);
         temp = addFirst(temp, x);
     }
     printList(temp);
-    printf("How many nodes you want to add last: ");
+    printf("How many elements you want to add at last: ");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        printf("Data %d: ", i + 1);
-        scanf("%d", &y);
-        temp = addLast(temp, y);
+        printf("Data of %d: ", i + 1);
+        scanf("%d", &x);
+        temp = addLast(temp, x);
     }
+    printList(temp);
+    printf("Enter the number you want to add in between and its index: ");
+    int index;
+
+    // Index has to be greater than 0 because this is for in between.
+
+    scanf("%d%d", &n, &index);
+    temp = addAtIndex(temp, n, index);
     printList(temp);
     free(head);
     return 0;

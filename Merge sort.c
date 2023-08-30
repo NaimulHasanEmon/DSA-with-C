@@ -45,7 +45,7 @@ void printArray(int arr[], int n)
 }
 int main()
 {
-    int arr[] = {7, 9, 5, 8, 1, 4, 5, 2, 6, 3};
+    int arr[] = {7, 9, 5, 8, 1, 4, 2, 6, 3};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Original array: ");
     printArray(arr, n);

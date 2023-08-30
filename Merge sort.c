@@ -36,29 +36,21 @@ void divide(int arr[], int si, int ei)
     divide(arr, mid + 1, ei);
     conquer(arr, si, mid, ei);
 }
+void printArray(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+}
 int main()
 {
-    printf("How many elements you want to add?: ");
-    int n;
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter array elements: ");
-    for (int i = 0; i < n; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
+    int arr[] = {7, 9, 5, 8, 1, 4, 5, 2, 6, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
     printf("Original array: ");
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+    printArray(arr, n);
     divide(arr, 0, n - 1);
-    printf("Original array: ");
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+    printf("\nSorted array: ");
+    printArray(arr, n);
     return 0;
 }

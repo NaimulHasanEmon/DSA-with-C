@@ -9,7 +9,7 @@ int partition(int arr[], int low, int high)
         {
             i++;
         }
-        while (arr[j] > pivot)
+        while (i <= j && arr[j] > pivot)
         {
             j--;
         }
@@ -46,9 +46,8 @@ int main()
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Original array: ");
     printArray(arr, n);
-    printf("\n");
     quickSort(arr, 0, n - 1);
-    printf("Sorted array: ");
+    printf("\nSorted array: ");
     printArray(arr, n);
     return 0;
 }

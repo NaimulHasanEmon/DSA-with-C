@@ -17,6 +17,23 @@ node *insertAtFirst(node *head, int data)
     return newNode;
 }
 
+node *insertAtIndex(node *head, int data, int index)
+{
+    node *newNode = (node *)malloc(sizeof(node));
+    newNode->data = data;
+    newNode->next = NULL;
+    int i = 0;
+    node *currNode = head;
+    while (i != index - 1)
+    {
+        currNode = currNode->next;
+        i++;
+    }
+    newNode->next = currNode->next;
+    currNode->next = newNode;
+    return head;
+}
+
 node *insertAtLast(node *head, int data)
 {
     node *newNode = (node *)malloc(sizeof(node));
@@ -48,10 +65,9 @@ int main()
 {
     struct Node *head = NULL;
     printf("Enter how many elements you want to add: ");
-    int n, data;
+    int n, key, data, index;
     scanf("%d", &n);
-    printf("If you want to add numbers at first then press 1  and if you want to add at last then press 2: ");
-    int key;
+    printf("If you want to add numbers at first then press 1\nIf you want to add at last then press 2: ");
     scanf("%d", &key);
     switch (key)
     {
@@ -74,7 +90,23 @@ int main()
         printList(head);
         break;
     default:
-        printf("Wrong key submission.\n");
+        printf("Invalid inpur for insertion.\n");
+        break;
+    }
+    printf("If you want to add at any index then press 3: ");
+    scanf("%d", &key);
+    switch (key)
+    {
+    case 3:
+        printf("Enter data: ");
+        scanf("%d", &data);
+        printf("Enter the index no: ");
+        scanf("%d", &index);
+        head = insertAtIndex(head, data, index);
+        printList(head);
+        break;
+    default:
+        printf("Invalid input for index.\n");
         break;
     }
     free(head);

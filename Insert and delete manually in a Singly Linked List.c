@@ -85,7 +85,7 @@ void printList(node *head)
 int main()
 {
     struct Node *head = NULL;
-    printf("Enter how many elements you want to add: ");
+    printf("Enter how many nodes you want: ");
     int n, key, data, index;
     scanf("%d", &n);
     printf("If you want to add numbers at first then press 1\nIf you want to add at last then press 2: ");

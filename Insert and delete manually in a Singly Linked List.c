@@ -50,6 +50,27 @@ node *insertAtLast(node *head, int data)
     return head;
 }
 
+node *deleteFirst(node *head)
+{
+    if (head == NULL)
+        return NULL;
+    return head->next;
+}
+node *deleteLast(node *head)
+{
+    if (head->next == NULL || head == NULL)
+        return NULL;
+    node *secondLastNode = head;
+    node *lastNode = head->next;
+    while (lastNode->next != NULL)
+    {
+        secondLastNode = lastNode;
+        lastNode = lastNode->next;
+    }
+    secondLastNode->next = NULL;
+    return head;
+}
+
 void printList(node *head)
 {
     node *currNode = head;
@@ -107,6 +128,21 @@ int main()
         break;
     default:
         printf("Invalid input for index.\n");
+        break;
+    }
+    printf("If you want to delete first then press 4\nIf you want to delete last then press 5: ");
+    scanf("%d", &key);
+    switch (key)
+    {
+    case 4:
+        head = deleteFirst(head);
+        printList(head);
+        break;
+    case 5:
+        head = deleteLast(head);
+        printList(head);
+        break;
+    default:
         break;
     }
     free(head);

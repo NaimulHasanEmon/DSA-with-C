@@ -5,16 +5,25 @@ typedef struct Node
     int data;
     struct Node *next;
 } node;
-node *creatList(node *head, int data)
+
+node *insertAtFirst(node *head, int data)
 {
     node *newNode = (node *)malloc(sizeof(node));
     newNode->data = data;
     newNode->next = NULL;
     if (head == NULL)
-    {
-        head = newNode;
-        return head;
-    }
+        return newNode;
+    newNode->next = head;
+    return newNode;
+}
+
+node *insertAtLast(node *head, int data)
+{
+    node *newNode = (node *)malloc(sizeof(node));
+    newNode->data = data;
+    newNode->next = NULL;
+    if (head == NULL)
+        return newNode;
     node *currNode = head;
     while (currNode->next != NULL)
     {
@@ -23,6 +32,7 @@ node *creatList(node *head, int data)
     currNode->next = newNode;
     return head;
 }
+
 void printList(node *head)
 {
     node *currNode = head;
@@ -33,19 +43,40 @@ void printList(node *head)
     }
     printf("NULL\n");
 }
+
 int main()
 {
+    struct Node *head = NULL;
     printf("Enter how many elements you want to add: ");
     int n, data;
     scanf("%d", &n);
-    node *head = NULL;
-    for (int i = 0; i < n; i++)
+    printf("If you want to add numbers at first then press 1  and if you want to add at last then press 2: ");
+    int key;
+    scanf("%d", &key);
+    switch (key)
     {
-        printf("Enter data of list %d: ", i + 1);
-        scanf("%d", &data);
-        head = creatList(head, data);
+    case 1:
+        for (int i = 0; i < n; i++)
+        {
+            printf("Enter data of list no %d: ", i + 1);
+            scanf("%d", &data);
+            head = insertAtFirst(head, data);
+        }
+        printList(head);
+        break;
+    case 2:
+        for (int i = 0; i < n; i++)
+        {
+            printf("Enter data of list no %d: ", i + 1);
+            scanf("%d", &data);
+            head = insertAtLast(head, data);
+        }
+        printList(head);
+        break;
+    default:
+        printf("Wrong key submission.\n");
+        break;
     }
-    printList(head);
     free(head);
     return 0;
 }

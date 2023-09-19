@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 typedef struct Node
 {
     int data;
@@ -37,7 +38,7 @@ void sizeOfList()
     printf("List size is: %d\n", size);
 }
 
-void printList(node *top)
+void printList()
 {
     node *tempNode = top;
     if (top == NULL)
@@ -65,14 +66,14 @@ int main()
         scanf("%d", &data);
         push(data);
     }
-    printList(top);
+    printList();
     sizeOfList();
     printf("How many elements you want to pop: ");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
         pop();
-        printList(top);
+        printList();
         sizeOfList();
     }
     return 0;

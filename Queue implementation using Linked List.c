@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int count = 0;
+
 typedef struct Node
 {
     int data;
@@ -31,7 +33,8 @@ void dequeue()
 {
     if (head == NULL)
     {
-        printf("Queue is empty.\n");
+        printf("Queue is empty.");
+        count++;
         return;
     }
     node *currNode = head;
@@ -45,7 +48,8 @@ void printQueue()
 {
     if (head == NULL)
     {
-        printf("Queue is empty.\n");
+        printf("Queue is empty.");
+        count++;
         return;
     }
     node *currNode = head;
@@ -73,6 +77,8 @@ int main()
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
+        if (count > 0)
+            break;
         dequeue();
         printQueue();
         printf("\n");

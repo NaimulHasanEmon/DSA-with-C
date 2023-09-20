@@ -1,58 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int count = 0;
-
 typedef struct Node
 {
     int data;
     struct Node *next;
 } node;
 
-struct Node *head;
+struct Node *F, *R;
+int count = 0;
 
 void enqueue(int data)
 {
     node *newNode = (node *)malloc(sizeof(node));
     newNode->data = data;
     newNode->next = NULL;
-    if (head == NULL)
+    if (F == NULL)
     {
-        head = newNode;
+        F = newNode;
+        R = newNode;
         return;
     }
-    node *currNode = head;
-    while (currNode->next != NULL)
-    {
-        currNode = currNode->next;
-    }
-    currNode->next = newNode;
+    R->next = newNode;
+    R = newNode;
 }
 
 void dequeue()
 {
-    if (head == NULL)
+    if (F == NULL)
     {
         printf("Queue is empty.");
         count++;
         return;
     }
-    node *currNode = head;
-    printf("Dequeued element is: %d\n", head->data);
-    head = head->next;
+    node *currNode = F;
+    printf("Dequeued element is: %d\n", F->data);
+    F = F->next;
     free(currNode);
     currNode = NULL;
 }
 
 void printQueue()
 {
-    if (head == NULL)
+    if (F == NULL)
     {
         printf("Queue is empty.");
         count++;
         return;
     }
-    node *currNode = head;
+    node *currNode = F;
     printf("Queue elements are: ");
     while (currNode != NULL)
     {
@@ -83,7 +79,9 @@ int main()
         printQueue();
         printf("\n");
     }
-    free(head);
-    head = NULL;
+    free(F);
+    free(R);
+    F = NULL;
+    R = NULL;
     return 0;
 }
